@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
 for F in `(cd files && ls -1 .[[:alpha:]]*)`; do
-    (cd ${HOME} && ln -s ${HOME}/dotfiles/files/${F} .)
+    rm ${HOME}/${F}
+    (cd ${HOME} && ln -s dotfiles/files/${F} .)
 done
