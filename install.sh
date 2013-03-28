@@ -1,7 +1,13 @@
 #!/bin/sh
 
 set -e
-for F in `(cd files && ls -1 .[[:alpha:]]*)`; do
+
+current_dir=`basename ${PWD}`
+files_dir="files"
+dotfiles=`find files -type f -depth 1 -exec basename {} \;`
+dotdirs=`find files -type d -not -name files -depth 1 -exec basename {} \;`
+
+for F in ${dotfiles} ${dotdirs}; do
     rm -f ${HOME}/${F}
-    (cd ${HOME} && ln -s dotfiles/files/${F} .)
+    (cd ${HOME} && ln -s ${current_dir}/${files_dir}/${F} .)
 done
