@@ -1,0 +1,5 @@
+[user]
+	email = y@trombik.org
+	name = Tomoyuki Sakurai
+[pull]
+	rebase = true

@@ -1,0 +1,23 @@
+URxvt.perl-ext-common:  default,matcher
+URxvt.url-launcher:     chromium-browser
+URxvt.matcher.button:   2
+URxvt.colorUL: #4682B4
+
+URxvt*termName:rxvt-256color
+URxvt.fading:       15
+URxvt.jumpScroll:   True
+URxvt.font:         -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso8859-1,-*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-iso8859-1,[codeset=JISX0208]-mplus-*-medium-*-*-*-12-*-*-*-*-*-jisx0208.1990-*
+URxvt.tintColor:    white
+URxvt.skipScroll:   True
+URxvt.shading:      35
+URxvt.transparent:  True
+URxvt.transparent:  True
+URxvt.scrollBar:    True
+URxvt.cursorColor:  green
+URxvt.scrollWithBuffer: False
+URxvt.saveLines:    4000
+URxvt.foreground:   white
+URxvt.background:   black
+URxvt.underlineColor:   yellow
+!URxvt.imFont: -mplus-gothic-medium-r-normal--12-120-75-75-c-120-jisx0208.1983-0
+URxvt.imFont: -misc-*
