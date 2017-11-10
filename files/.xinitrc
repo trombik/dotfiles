@@ -1,8 +1,8 @@
 # vim: ft=sh
 setxkbmap us
 setxkbmap -option ctrl:nocaps
-if [ -f "${HOME}/.Xresources-`hostname`" ]; then
-    xrdb -merge -I"${HOME}" "${HOME}/.Xresources-`hostname`"
+if [ -f "${HOME}/.Xresources.`hostname`" ]; then
+    xrdb -merge -I"${HOME}" "${HOME}/.Xresources.`hostname`"
 fi
 
 urxvtd -q -f -o
