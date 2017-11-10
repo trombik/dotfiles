@@ -1,0 +1,15 @@
+# FreeBSD Port Tools configuration file - see porttools(5)
+# vim: ft=sh
+EMAIL="y@trombik.org"
+FULLNAME="Tomoyuki Sakurai"
+ORGANIZATION=""
+BCC=""
+CC=""
+BUILDROOT="/tmp"
+ARCHIVE_DIR=""
+DIFF_MODE="SVN"
+DIFF_VIEWER="more"
+PORTLINT_FLAGS="abct"
+PORTSDIR="~/github/trombik/freebsd-ports"
+PORTSDIR="/home/trombik/github/trombik/freebsd-ports"
+#PORT_DBDIR="
