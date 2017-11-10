@@ -1,116 +1,89 @@
-
-
 set nocompatible
-set backspace=indent,eol,start
-set history=5000		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
+    " if Vunldle has been installed, use it.
+    " requires git, curl.
+    "
+    " see :h vundle after running `:PluginInstall`
+    filetype off
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'VundleVim/Vundle.vim'
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
+    Plugin 'kopischke/vim-fetch'
 
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+    Plugin 'vim-airline/vim-airline'
+    let g:airline#extensions#tabline#enabled = 1
 
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  augroup END
-
+    Plugin 'tpope/vim-fugitive'
+    call vundle#end()
+    filetype plugin indent on
+    " or
+    " filetype plugin on
 else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-
-" hi Pmenu
-" my config
+    " no fancy plug-ins are available, fall back to minimal status line
+    set statusline=%F%m%r%h%w\ FORMAT=%{&ff}\ ft=%y\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+endif
+set backspace=indent,eol,start
+set history=5000
+set ruler
+set showcmd
+set incsearch
+set autoindent
 set encoding=utf8
-set fileencodings=iso-2022-jp,utf-8,cp932
+set fileencodings=ucs-bom,utf-8,latin1
 set number
 set shell=/bin/sh
-let spell_auto_type=""
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-autocmd BufNewFile,BufRead *.tt setf tt2
-autocmd BufNewFile,BufRead *.tt2 setf tt2
-autocmd BufNewFile,BufRead *.pp set softtabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead */*cookbooks/*  call s:SetupChef()
-
-function! s:SetupChef()
-    " Mouse:
-    " Left mouse click to GO!
-    nnoremap <buffer> <silent> <2-LeftMouse> :<C-u>ChefFindAny<CR>
-    " Right mouse click to Back!
-    nnoremap <buffer> <silent> <RightMouse> <C-o>
-
-    " Keyboard:
-    nnoremap <buffer> <silent> <M-a> :<C-u>ChefFindAny<CR>
-    nnoremap <buffer> <silent> <M-f> :<C-u>ChefFindAnySplit<CR>
-endfunction
-
 set foldmethod=marker
-let g:netrw_ftp =1
 set showtabline=2
-let html_use_css = 1
-let use_xhtml = 1
 set formatoptions=tcroqlmM
-set statusline=%F%m%r%h%w\ FORMAT=%{&ff}\ ft=%y\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
-set laststatus=2 
+set laststatus=2
 set cursorline
-"set foldcolumn=4
-let g:Perl_PerlcriticSeverity = 3
+set hlsearch
+set autoindent
+set textwidth=78
+set scrolloff=4
+set ttyfast
+set wildmenu
 
-let twitvim_login_b64="dHJvbWJpazpzYWt1cmEx"
-let twitvim_count = 100
+" don't use Ex mode, use Q for formatting
+map Q gq
+" map Ctrl+A in command mode to `move the cursor to the beginning of the line
+cnoremap <C-A> <Home>
+augroup myfiletypes
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+    " autoindent with two spaces, always expand tabs
+    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+    autocmd FileType text setlocal textwidth=78
+    autocmd BufNewFile,BufRead *.md set spell
+augroup END
+
+" execute a command and show it's output in a split window
+" example:
+" :Shell dmesg
+command! -nargs=* -complete=shellcmd Shell execute "new | r! <args>"
 
 colorscheme darkblue
 highlight Normal ctermbg=None
-highlight CursorLine cterm=None ctermbg=235 guibg=236
+highlight CursorLine cterm=None ctermbg=235
 highlight CursorLineNr ctermfg=11 ctermbg=235
 highlight LineNr ctermfg=49
 highlight Comment ctermfg=196
-
-runtime ftplugin/man.vim
-
-augroup myfiletypes
-    " Clear old autocmds in group
-    autocmd!
-    " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
-augroup END
-
-if (v:version >= 700)
-highlight SpellBad      ctermfg=Red         term=Reverse        guisp=Red       gui=undercurl   ctermbg=White
-highlight SpellCap      ctermfg=Green       term=Reverse        guisp=Green     gui=undercurl   ctermbg=White
-highlight SpellLocal    ctermfg=Cyan        term=Underline      guisp=Cyan      gui=undercurl   ctermbg=White
-highlight SpellRare     ctermfg=Magenta     term=underline      guisp=Magenta   gui=undercurl   ctermbg=White
-endif " version 7+
+highlight SpellBad      ctermfg=Red         term=Reverse        guisp=Red       ctermbg=White
+highlight SpellCap      ctermfg=Green       term=Reverse        guisp=Green     ctermbg=White
+highlight SpellLocal    ctermfg=Cyan        term=Underline      guisp=Cyan      ctermbg=White
+highlight SpellRare     ctermfg=Magenta     term=underline      guisp=Magenta   ctermbg=White
+highlight ExtraWhitespace ctermbg=red
+highlight DiffAdd         ctermbg=235  ctermfg=108  cterm=reverse
+highlight DiffChange      ctermbg=235  ctermfg=103  cterm=reverse
+highlight DiffDelete      ctermbg=235  ctermfg=131  cterm=reverse
+highlight DiffText        ctermbg=235  ctermfg=208  cterm=reverse
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()

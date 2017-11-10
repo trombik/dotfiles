@@ -9,8 +9,6 @@ PATH=${PATH}:$HOME/bin
 # }}}
 # {{{ zsh
 
-zstyle :compinstall filename "${HOME}/.zshrc"
-fpath=(~/.zsh/functions/Completion ${fpath})
 autoload -Uz compinit
 compinit
 autoload -U promptinit
@@ -25,7 +23,7 @@ setopt listpacked auto_pushd correct noautoremoveslash nolistbeep
 setopt hist_ignore_dups share_history complete_aliases nobeep
 setopt ALWAYS_TO_END COMPLETE_IN_WORD EXTENDED_GLOB nohup
 setopt magic_equal_subst mark_dirs pushd_ignore_dups auto_param_slash
-setopt auto_param_keys 
+setopt auto_param_keys
 # }}}
 # {{{ variables
 LISTMAX=256
@@ -33,13 +31,6 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 export LANG=en_US.UTF-8
-export XIM=ibus
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=xim
-export XMODIFIERS=@im=ibus
-export XIM_PROGRAM="ibus-daemon"
-export XIM_ARGS="--daemonize --xim"
-
 # cd /usr/local/etc/^W
 # cd /usr/local/
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -101,6 +92,7 @@ case $OS in
         ;;
     FreeBSD)
         alias ls='ls -G -F'
+        alias firefox="$USE_JP firefox"
         ;;
     *)
         ;;
