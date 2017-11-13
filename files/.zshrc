@@ -5,7 +5,17 @@ if [ -L "/usr/X11R" ]; then
 else
 	PATH=${PATH}:/usr/X11R/bin:/usr/X11R/sbin
 fi
-PATH=${PATH}:$HOME/bin
+if [ -d "${HOME}/bin" ]; then
+    PATH=${PATH}:$HOME/bin
+fi
+if [ ! -z `ruby -e 'puts RUBY_VERSION' 2>/dev/null` ]; then
+    # /home/trombik/.gem/ruby/2.3/bin
+    _ruby_ver=`ruby -e 'puts RUBY_VERSION.split(".")[0..1].join(".")'`
+    _gem_path="${HOME}/.gem/ruby/${_ruby_ver}/bin"
+    if [ -d "${_gem_path}" ]; then
+        PATH="${PATH}:${_gem_path}"
+    fi
+fi
 # }}}
 # {{{ zsh
 
