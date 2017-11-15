@@ -177,8 +177,3 @@ case $TERM in
 	*)
 		;;
 esac
-
-# source env-setup to use ansible from git repository
-if [ -d ~/github/ansible ]; then
-    source ~/github/ansible/hacking/env-setup -q
-fi
