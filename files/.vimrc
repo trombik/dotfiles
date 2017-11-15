@@ -13,6 +13,10 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
     Plugin 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols_ascii = 1
+    let g:airline_highlighting_cache = 1
 
     Plugin 'tpope/vim-fugitive'
     call vundle#end()
@@ -23,30 +27,33 @@ else
     " no fancy plug-ins are available, fall back to minimal status line
     set statusline=%F%m%r%h%w\ FORMAT=%{&ff}\ ft=%y\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 endif
+set autoindent
 set backspace=indent,eol,start
-set history=5000
-set ruler
-set showcmd
-set incsearch
-set autoindent
-set encoding=utf8
-set fileencodings=ucs-bom,utf-8,latin1
-set number
-set shell=/bin/sh
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set showtabline=2
-set formatoptions=tcroqlmM
-set laststatus=2
 set cursorline
+set encoding=utf8
+set expandtab
+set fileencodings=ucs-bom,utf-8,latin1
+set foldmethod=marker
+set formatoptions=tcroqlmM
+set history=5000
 set hlsearch
-set autoindent
-set textwidth=78
+set incsearch
+set laststatus=2
+set mouse=
+set number
+set ruler
 set scrolloff=4
+set shell=/bin/sh
+set shiftwidth=4
+set showcmd
+set showtabline=2
+set smartcase
+set smarttab
+set tabstop=4
+set textwidth=78
 set ttyfast
 set wildmenu
+syntax on
 
 " don't use Ex mode, use Q for formatting
 map Q gq
