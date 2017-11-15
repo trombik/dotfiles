@@ -27,7 +27,7 @@ if [ -x `which bmon` ]; then
     urxvtc -e bmon ${bmon_flags} &
 fi
 
-for i in `jot - 1 3`; do
+for i in `jot - 1 2`; do
     urxvtc &
 done
 
