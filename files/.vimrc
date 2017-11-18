@@ -3,6 +3,8 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
     " if Vunldle has been installed, use it.
     " requires git, curl.
     "
+    " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    "
     " see :h vundle after running `:PluginInstall`
     filetype off
     set rtp+=~/.vim/bundle/Vundle.vim
