@@ -1,13 +1,13 @@
 # vim: ft=sh
 setxkbmap us
 setxkbmap -option ctrl:nocaps
-if [ -f "${HOME}/.Xresources-`hostname`" ]; then
-    xrdb -merge -I"${HOME}" "${HOME}/.Xresources-`hostname`"
+if [ -f "${HOME}/.Xresources.`hostname -s`" ]; then
+    xrdb -merge -I"${HOME}" "${HOME}/.Xresources.`hostname -s`"
 fi
 
 urxvtd -q -f -o
 
-if [ -x `which bmon` ]; then
+if [ -x `which bmon 2>/dev/null` ]; then
     monitored_interfaces=""
     case `uname -s` in
         FreeBSD|OpenBSD)

@@ -1,9 +1,9 @@
 # {{{ PATH
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-if [ -L "/usr/X11R" ]; then
+if [ -L "/usr/X11R6" ]; then
     :
 else
-	PATH=${PATH}:/usr/X11R/bin:/usr/X11R/sbin
+	PATH=${PATH}:/usr/X11R6/bin:/usr/X11R6/sbin
 fi
 PATH=${PATH}:$HOME/bin
 # }}}

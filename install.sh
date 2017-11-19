@@ -4,8 +4,8 @@ set -e
 
 current_dir=`basename ${PWD}`
 files_dir="files"
-dotfiles=`find ${files_dir} -type f -depth 1 -exec basename {} \;`
-dotdirs=`find ${files_dir} -type d -not -name ${files_dir} -depth 1 -exec basename {} \;`
+dotfiles=`find ${files_dir} -type f -maxdepth 1 -exec basename {} \;`
+dotdirs=`find ${files_dir} -type d -and ! -name ${files_dir} -maxdepth 1 -exec basename {} \;`
 
 for F in ${dotfiles} ${dotdirs}; do
     rm -f ${HOME}/${F}
