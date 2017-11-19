@@ -5,7 +5,17 @@ if [ -L "/usr/X11R6" ]; then
 else
 	PATH=${PATH}:/usr/X11R6/bin:/usr/X11R6/sbin
 fi
-PATH=${PATH}:$HOME/bin
+if [ -d "${HOME}/bin" ]; then
+    PATH=${PATH}:$HOME/bin
+fi
+if [ ! -z `ruby -e 'puts RUBY_VERSION' 2>/dev/null` ]; then
+    # /home/trombik/.gem/ruby/2.3/bin
+    _ruby_ver=`ruby -e 'puts RUBY_VERSION.split(".")[0..1].join(".")'`
+    _gem_path="${HOME}/.gem/ruby/${_ruby_ver}/bin"
+    if [ -d "${_gem_path}" ]; then
+        PATH="${PATH}:${_gem_path}"
+    fi
+fi
 # }}}
 # {{{ zsh
 
@@ -167,8 +177,3 @@ case $TERM in
 	*)
 		;;
 esac
-
-# source env-setup to use ansible from git repository
-if [ -d ~/github/ansible ]; then
-    source ~/github/ansible/hacking/env-setup -q
-fi
