@@ -21,6 +21,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
     let g:airline_highlighting_cache = 1
 
     Plugin 'tpope/vim-fugitive'
+    Plugin 'mzlogin/vim-markdown-toc'
     call vundle#end()
     filetype plugin indent on
     " or
